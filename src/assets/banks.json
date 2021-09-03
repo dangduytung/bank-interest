@@ -1,0 +1,138 @@
+[
+  {
+    "bank_name": "VIB",
+    "short_name": "VIB",
+    "m6": 8.5,
+    "m12": 10.1
+  },
+  {
+    "bank_name": "MSB",
+    "short_name": "MSB",
+    "m6": 6.59,
+    "m12": 8
+  },
+  {
+    "bank_name": "BIDV",
+    "short_name": "BID",
+    "m12": 7.8,
+    "m24": 8.8
+  },
+  {
+    "bank_name": "Techcombank",
+    "short_name": "TCB",
+    "m6": 7.89,
+    "m12": 8.29
+  },
+  {
+    "bank_name": "LienVietPostBank",
+    "short_name": "LPB",
+    "m3": 10.25
+  },
+  {
+    "bank_name": "TPBank",
+    "short_name": "TPB",
+    "m3": 6.9,
+    "m12": 9.5
+  },
+  {
+    "bank_name": "VPBank",
+    "short_name": "VPB",
+    "m6": 8.5,
+    "m12": 9.5
+  },
+  {
+    "bank_name": "Vietcombank",
+    "short_name": "VCB",
+    "m12": 7.7,
+    "m24": 8.4,
+    "m36": 9.2
+  },
+  {
+    "bank_name": "VietinBank",
+    "short_name": "CTG",
+    "m12": 8.1,
+    "m24": 8.5
+  },
+  {
+    "bank_name": "UOB",
+    "short_name": "UOB",
+    "m12": 9.49
+  },
+  {
+    "bank_name": "SHB",
+    "short_name": "SHB",
+    "m12": 8.9
+  },
+  {
+    "bank_name": "Eximbank",
+    "short_name": "EIB",
+    "m12": 11.5
+  },
+  {
+    "bank_name": "Sacombank",
+    "short_name": "STB",
+    "m12": 11.5
+  },
+  {
+    "bank_name": "SCB",
+    "short_name": "SCB",
+    "m12": 9,
+    "m24": 9.5
+  },
+  {
+    "bank_name": "ACB",
+    "short_name": "ACB",
+    "m12": 9.5
+  },
+  {
+    "bank_name": "PVcomBank",
+    "short_name": "PVcomBank",
+    "m6": 7.59,
+    "m12": 8.99
+  },
+  {
+    "bank_name": "HongLeongBank",
+    "short_name": "HLBVN",
+    "m6": 6.75,
+    "m12": 7.75,
+    "m24": 8
+  },
+  {
+    "bank_name": "ShinhanBank",
+    "short_name": "SHINHAN",
+    "m12": 6.9,
+    "m24": 7.7,
+    "m36": 8.8
+  },
+  {
+    "bank_name": "Standard Chartered",
+    "short_name": "STAN",
+    "m12": 6.49,
+    "m24": 7.99,
+    "m36": 8.99
+  },
+  {
+    "bank_name": "OCB",
+    "short_name": "OCB",
+    "m12": 8.68
+  },
+  {
+    "bank_name": "WooriBank",
+    "short_name": "WOO",
+    "m12": 8
+  },
+  {
+    "bank_name": "Bắc Á BANK",
+    "short_name": "BAB",
+    "m12": 8.99,
+    "m24": 8.9
+  },
+  {
+    "bank_name": "HSBC",
+    "short_name": "HSBC",
+    "m6": 7.99,
+    "m12": 7.99,
+    "m24": 8.49,
+    "m36": 9.49
+  }
+]

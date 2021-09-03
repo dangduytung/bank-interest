@@ -1,0 +1,157 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="row mb-2">
+        <label class="col-sm-6 col-form-label font-weight-bold">Tính toán lãi suất</label>
+      </div>
+
+      <div class="row mb-2">
+        <label for="price" class="col-sm-4 col-form-label">Giá (VNĐ)</label>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" id="price" [(ngModel)]="moneyHouse">
+        </div>
+        <div class="col-sm-4">
+          <label style="position: relative; top: 10px">{{moneyHouse | number}} (VNĐ)</label>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <label for="prepaid" class="col-sm-4 col-form-label">Trả trước (%)</label>
+        <div class="col-sm-4">
+          <select class="form-select" id="prepaid" (change)="selectPrepaid($event)" [(ngModel)]="selected">
+            <option [value]="interestItem.id" *ngFor="let interestItem of interestItems">{{interestItem.name}}</option>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <label style="position: relative; top: 10px">{{moneyPrepaid | number}} (VNĐ)</label>
+        </div>
+      </div>
+
+      <div class="row mb-2" style="border: 1px solid #000000;">
+      </div>
+
+      <div class="row mb-3">
+        <label for="bank" class="col-sm-4 col-form-label"><a
+            href="https://gist.github.com/dangduytung/658acdf3dcb7fa42558e6c52d0cfd97d"
+            aria-test="https://topbank.vn/tu-van/lai-suat-vay-mua-nha" target="_blank" title="(Cập nhật 08/2020)">Ngân
+            hàng</a></label>
+        <div class="col-sm-4">
+          <select class="form-select" id="bank" (change)="selectBank($event)">
+            <option></option>
+            <option [value]="bank.short_name" *ngFor="let bank of bankList">{{bank.bank_name}}</option>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <select class="form-select" [(ngModel)]="preferentialMonth" (change)="selectBankInterest()">
+            <option></option>
+            <option [ngValue]="obj" *ngFor="let obj of preferentialMonths">
+              {{obj.month + '&nbsp;tháng - ' + obj.interest + '%'}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="period" class="col-sm-4 col-form-label">Kỳ hạn (năm)</label>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" id="period" [(ngModel)]="period">
+        </div>
+        <div class="col-sm-4" style="margin-top: -10px;">
+          <ngx-slider id="period-slider" [(value)]="period" [options]="periodOptions" (valueChange)="calculate()">
+          </ngx-slider>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="interest" class="col-sm-4 col-form-label">Lãi suất (%/năm)</label>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" id="interest" [(ngModel)]="interest">
+        </div>
+        <div class="col-sm-4" style="margin-top: -10px;">
+          <ngx-slider id="interest-slider" [(value)]="interest" [options]="interestOptions" (valueChange)="calculate()">
+          </ngx-slider>
+        </div>
+      </div>
+
+      <div class="row mb-2" style="border: 1px solid #000000;">
+      </div>
+
+      <div class="row">
+        <label for="money-month" class="col-sm-4 col-form-label">Tiền gốc hàng tháng</label>
+        <div class="col-sm-4" style="text-align: right;">
+          <label style="position: relative; top: 7px">{{moneyOriginalMonth | number}} (VNĐ)</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="money-month" class="col-sm-4 col-form-label">Tổng lãi chưa ưu đãi</label>
+        <div class="col-sm-4" style="text-align: right;">
+          <label style="position: relative; top: 7px">{{(moneyInterestTotal > 0 ? moneyInterestTotal : '') | number}}
+            {{moneyInterestTotal > 0 ? '(VNĐ)' : '' }}</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="money-month" class="col-sm-4 col-form-label">Tổng lãi có ưu đãi</label>
+        <div class="col-sm-4" style="text-align: right;">
+          <label
+            style="position: relative; top: 7px">{{(moneyInterestPreferenceTotal > 0 ? moneyInterestPreferenceTotal : '') | number}}
+            {{moneyInterestPreferenceTotal > 0 ? '(VNĐ)' : '' }}</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="money-month" class="col-sm-4 col-form-label">Tổng tiền hết kỳ</label>
+        <div class="col-sm-4" style="text-align: right;">
+          <label style="position: relative; top: 7px">{{money + moneyInterestTotal | number}} (VNĐ)</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="money-month" class="col-sm-4 col-form-label">Tổng tất cả</label>
+        <div class="col-sm-4" style="text-align: right;">
+          <label style="position: relative; top: 7px">{{moneyHouse + moneyInterestTotal | number}} (VNĐ)</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <table class="table table-light caption-top">
+          <caption><strong>Tiền đóng theo kỳ</strong></caption>
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Kỳ</th>
+              <th scope="col" class="text-center">Số gốc còn lại</th>
+              <th scope="col" class="text-center">Gốc</th>
+              <th scope="col" class="text-center">Lãi / Ưu đãi</th>
+              <th scope="col" class="text-center">Gốc + Lãi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let debt of debts">
+              <th scope="row" class="text-center">{{debt.id}}</th>
+              <td class="text-center">{{debt.moneyRemaining | number}}</td>
+              <td class="text-center">{{debt.moneyOriginalMonth == 0 ? '' : debt.moneyOriginalMonth | number}}</td>
+              <td class="text-center">{{debt.moneyInterestMonth == 0 ? '' : debt.moneyInterestMonth | number}}<br>
+                {{debt.moneyInterestPreference == 0 ? '' : debt.moneyInterestPreference | number}}</td>
+              <td class="text-center">
+                {{(debt.moneyOriginalMonth + debt.moneyInterestMonth) == 0 ? '' : (debt.moneyOriginalMonth + debt.moneyInterestMonth) | number}}<br>
+                {{debt.moneyInterestPreference == 0 ? '' : debt.moneyOriginalMonth + debt.moneyInterestPreference | number}}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td></td>
+              <td class="font-weight-bold text-center">{{money | number}}</td>
+              <td class="font-weight-bold text-center">{{moneyInterestTotal | number}}</td>
+              <td class="font-weight-bold text-center">{{money + moneyInterestTotal | number}}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+/*
+* Fix issue transition on bootstrap 5
+*/
+.ngx-slider.animate .ngx-slider-pointer {
+  transition: none !important;
+}
+
+.ngx-slider.animate .ngx-slider-bubble {
+  transition: none !important;
+}
